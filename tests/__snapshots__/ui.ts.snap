@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI basic rollback UI 1`] = `
+">> TRANSACTION NOT FOUND
+>> >> >> 1234
+>> >> 123
+>> >> 1234
+>> "
+`;
+
+exports[`UI basic set/get inputs 1`] = `
+">> >> 1234
+>> "
+`;
+
+exports[`UI commit 1`] = `
+">> >> >> >> 1234
+>> >> >> >> >> abc
+>> TRANSACTION NOT FOUND
+>> "
+`;
+
+exports[`UI count basics 1`] = `
+">> >> 1
+>> 0
+>> >> 2
+>> "
+`;
+
+exports[`UI delete 1`] = `
+">> >> 1234
+>> >> NULL
+>> "
+`;
+
+exports[`UI invalid commands 1`] = `
+">> dont know what to do with hello
+>> Invalid command HELLO
+>> Invalid GET
+>> Invalid SET
+>> Invalid SET
+>> Invalid DELETE
+>> "
+`;
