@@ -1,7 +1,7 @@
 {
   "name": "dta",
   "version": "1.0.0",
-  "description": "devoted tech assignment",
+  "description": "db assignment",
   "main": "index.js",
   "scripts": {
     "test": "jest",
