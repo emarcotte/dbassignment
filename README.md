@@ -27,7 +27,7 @@ To get started:
    available memory.
 7. The runtime performance of _heavily_ nested transactions is not as critical
    as scaling with large datasets, e.g. handling 10000 nested transactions is
-   vital than handling 10000 rows.
+   less vital than handling 10000 rows.
 8. It is less critical to shrink the database when keys or values are removed
 9. Set and Object lookups are O(1).
 10. ... more to come ...
