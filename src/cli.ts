@@ -1,6 +1,7 @@
 import { AssignmentDB } from "./database";
 import * as readline from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
+import events from 'events';
 
 const command_regex = /^([A-Z]+)(.*)/;
 const set_args = /^([^s]+)\s(.+)/;
@@ -94,28 +95,40 @@ export async function main(
     const ui = readline.createInterface({
         input,
         output,
+        prompt: '>> ',
     });
-    let exit = false;
+    ui.prompt();
 
-    while (!exit) {
-        const line = await ui.question(">> ");
-        const match = command_regex.exec(line);
-        if (!match) {
-            output.write(`dont know what to do with ${line}\n`);
-        }
-        else {
-            const args = (match[2] || "").trim();
-            const handler = handlers[match[1]];
-            if (!handler) {
-                output.write(`Invalid command ${match[1]}\n`)
-            }
-            else {
-                exit = handler(db, args, output);
-            }
-        }
-    }
-    output.end();
+    await Promise.race([
+        // If the stdin is closed, see ya later.
+        events.once(ui, 'close'),
+        // Otherwise, just keep running the line parser
+        new Promise<void>((resolve) => {
+            ui.on('line', (line) => {
+                const match = command_regex.exec(line);
+                if (!match) {
+                    output.write(`dont know what to do with ${line}\n`);
+                }
+                else {
+                    const args = (match[2] || "").trim();
+                    const handler = handlers[match[1]];
+                    if (!handler) {
+                        output.write(`Invalid command ${match[1]}\n`)
+                    }
+                    else {
+                        if (handler(db, args, output)) {
+                            resolve()
+                        }
+                    }
+                }
+                ui.prompt();
+            });
+        }),
+    ]);
+
+
     ui.close();
+    output.end();
 }
 
 if (require.main === module) {

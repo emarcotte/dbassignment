@@ -119,4 +119,4 @@ describe("UI", () => {
         expect(db.get('1')).toBeUndefined()
         expect(output).toMatchSnapshot();
     });
-})
+});

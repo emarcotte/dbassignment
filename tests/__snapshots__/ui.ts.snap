@@ -5,32 +5,32 @@ exports[`UI basic rollback UI 1`] = `
 >> >> >> 1234
 >> >> 123
 >> >> 1234
->> "
+>> >> "
 `;
 
 exports[`UI basic set/get inputs 1`] = `
 ">> >> 1234
->> "
+>> >> "
 `;
 
 exports[`UI commit 1`] = `
 ">> >> >> >> 1234
 >> >> >> >> >> abc
 >> TRANSACTION NOT FOUND
->> "
+>> >> "
 `;
 
 exports[`UI count basics 1`] = `
 ">> >> 1
 >> 0
 >> >> 2
->> "
+>> >> "
 `;
 
 exports[`UI delete 1`] = `
 ">> >> 1234
 >> >> NULL
->> "
+>> >> "
 `;
 
 exports[`UI invalid commands 1`] = `
@@ -40,5 +40,5 @@ exports[`UI invalid commands 1`] = `
 >> Invalid SET
 >> Invalid SET
 >> Invalid DELETE
->> "
+>> >> "
 `;
