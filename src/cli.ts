@@ -4,9 +4,9 @@ import { stdin, stdout } from 'node:process';
 import events from 'events';
 
 const command_regex = /^([A-Z]+)(.*)/;
-const set_args = /^([^s]+)\s(.+)/;
-const get_args = /^([^s]+)/;
-const delete_args = /^([^s]+)/;
+const set_args = /^([^\s]+)\s([^\s]+)$/;
+const get_args = /^([^\s]+)$/;
+const delete_args = /^([^\s]+)$/;
 
 const handlers: Record<string, (db: AssignmentDB, args: string, output: NodeJS.WritableStream) => boolean> = {
     SET: set_handler,

@@ -61,8 +61,12 @@ describe("UI", () => {
             "hello",
             "HELLO",
             "GET",
+            // disallow spaces in keys
+            "GET a a",
             "SET",
             "SET X",
+            // disallow spaces in values (or keys)
+            "SET X a a",
             "DELETE",
             "END",
         ]);
